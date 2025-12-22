@@ -1,3 +1,14 @@
+---
+title: 2025.8.23 Rust interview
+description: not a job interview, but a rust related interview
+date: 2025-12-21 17:11:00+0000
+categories:
+    - Example Category
+tags:
+    - Example Tag
+weight: 1       # You can add weight to some posts to override the default sorting (date descending)
+---
+
 # 8.23 周六 李泉 Rust 采访
 
 尊敬的受访者，感谢您参与本次 Rust 开发者访谈。本访谈旨在深入探讨 Rust 编程语言的
