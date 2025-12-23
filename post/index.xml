@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Pan Anjie's blog</title><link>https://rollinggulf.github.io/post/</link><description>Recent content in Posts on Pan Anjie's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 22 Dec 2025 09:23:48 +0000</lastBuildDate><atom:link href="https://rollinggulf.github.io/post/index.xml" rel="self" type="application/rss+xml"/><item><title>2025.8.23 Rust interview</title><link>https://rollinggulf.github.io/p/2025.8.23-rust-interview/</link><pubDate>Sun, 21 Dec 2025 17:11:00 +0000</pubDate><guid>https://rollinggulf.github.io/p/2025.8.23-rust-interview/</guid><description>&lt;h1 id="823-周六-李泉-rust-采访"&gt;8.23 周六 李泉 Rust 采访
+&lt;/h1&gt;&lt;p&gt;尊敬的受访者，感谢您参与本次 Rust 开发者访谈。本访谈旨在深入探讨 Rust 编程语言的
+特性、 开发体验及社区生态， 涵盖项目选择、团队协作、技术挑战、生态系统及未来发展等关键
+主题。 以下问题列表供您提前准备， 您可根据自身经验自由回答， 访谈将以开放对话的形式进行。
+如有任何疑问，请通过电子邮件联系我们，联系方式如下：
+冯洋 &lt;a class="link" href="mailto:fengyang@nju.edu.cn" &gt;fengyang@nju.edu.cn&lt;/a&gt; 王冬 &lt;a class="link" href="mailto:122062815@henu.edu.cn" &gt;122062815@henu.edu.cn&lt;/a&gt;
+冯嘉轩 &lt;a class="link" href="mailto:2110168954@qq.com" &gt;2110168954@qq.com&lt;/a&gt; 李泉 &lt;a class="link" href="mailto:104754242085@henu.edu.cn" &gt;104754242085@henu.edu.cn&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;1、 您是在什么契机下接触到 Rust， 是什么原因让您决定使用 Rust 语言来开发现在的项目呢？
+如果方便的话，能否请您简单介绍一下目前研究的方向或者开发的项目吗？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;蓝河，天生安全，开源，嵌入式操作系统（手表，眼镜等）这能从根本上避免许多传统 C/C++ 开发中常见的 Bug，如空指针、数据竞争等。
+&lt;strong&gt;Rust FFI-free：&lt;/strong&gt; 蓝河 OS 致力于尽可能不依赖外部的 C/C++ 库，整个系统从底层到应用层都尽可能使用 Rust 来实现，这使得整个系统的代码库更加统一和安全。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;2、 用Rust 语言开发是否会影响团队在测试和修复相关 bug 时的效率？Rust 在协同开发时和
+其他语言有什么显著差异的地方吗？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;编译器报错清晰，有越界的运行时检查，帮助debug；
+cargo提供的统一依赖管理也更方便团队协作，同步依赖更稳定&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;3、您觉得 Rust 在实际项目中使用时有哪些优势、劣势？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;优势：习惯之后心智负担较小地做到快而安全
+劣势：习惯之前跑过编译器需要调试挺长时间&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;4、在调试 Rust 程序时，相比于其他语言，有什么困难的地方吗？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;就过编译花时间多一点，调试的话差不多&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;5、在您的项目中如何选则使用哪些第三方库？这些库的质量和可靠性有专门的评估策略
+吗？第三方库和框架是否足够丰富，能够完全满足您的需求？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一般由调研的项目成员评估；我们是内核项目，谨慎引入三方库，对库生态和框架不够了解&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;6、您觉得目前的标准库、第三方库的质量如何？功能的提供是否足够、文档是否规范、库
+学习起来的难易程度？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;标准挺完善的，三方库参差不齐吧；给了example的上手快一些；文档因为有rustdoc帮助生成文档比较方便&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;7、Rust 社区的快速演进（如新特性和库更新）对工业项目的稳定性有何影响？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;用本地编译的工具链，固定版本&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;8、您在项目开发过程中使用过哪些自动化测试框架和工具，对于排查 bug 和优化您的项目
+是否有帮助？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;clippy, rustfmt, miri; 可读性，风格一致，检查UB和根据warning检查潜在的bug
+操作系统运行在裸机，不用标准库，用内部测试框架&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;9、Rust 程序的编译时间对您的项目开发体验有何影响？编译器的严格编译检查，在快速迭
+代的开发环境中是否反而成为生产力的阻碍？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;cargo构建编译时间长，用了gn+ninja；我们团队的快速迭代不明显（互联网迭代比较快）操作系统内核宁愿开发速度慢一点，也要代码质量更高，通过编译器检查之后还要通过复杂的ci以及人工审查，所以编译检查不算，在熟悉rust之后编译检查几乎不会影响生产力&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;10、在与其他编程语言如 C/C++、python 集成时，Rust 的 FFI（外部函数接口）带来过哪些
+意想不到的 bug、是否增大了维护挑战的问题？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我负责的不是这一块，遇到的比较少，有一个miri内置函数与自定义的C函数名称冲突了，写了个条件编译来解决；
+rust struct 默认不是固定内存布局；错误处理时的返回值类型不匹配；字符串，整形等基本类型的转换；回调时的闭包会转为结构体而不是函数指针，需要手动将捕获的环境变量也一起随着给c/c++的函数传过去&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;11、在修改 Rust 代码时容易引起错误或问题吗？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;能把漏掉的需要的关联性修改的报错提前到编译器，比如match穷尽匹配，可以更大胆修改代码&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;12、Rust 的工具链（rustc、cargo、rustup 等）在跨平台开发时遇到过哪些挑战？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;miri仅支持少量平台吧，不过这个也问题不大，宿主机上能跑就行
+rustup有时候找不到想要的平台可能要自己编译&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;13、在 Rust 应用部署的时候，遇到过哪些挑战？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;静态链接，二进制体积比较大，对于嵌入式这样空间敏感的设备来说比较麻烦；要谨慎使用内联代码&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;14、您觉得在学习和使用 Rust 时所遇到的困难有什么？
+1 基础知识（所有权系统、声明周期、错误处理、泛型、特型、宏、并发模型&amp;hellip;..）
+2 代码的可读性差
+3 编译器错误提示
+4 学习资源不足
+5 库文档质量欠缺
+6 社区支持（回复率、有效的回复率）&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;生命周期打错了，这是个很难理解的点，所有权系统好理解但是用的时候由于习惯不是那么好改所以编译器报错多一些，生命周期则是不好理解但在基础的时候不会遇到那么多生命周期问题；宏也难学，比c++强大，有专门的手册来学习宏，过程宏和声明宏&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;15、Rust 的那些独特设计（比如上面所提到的基础知识那一部分），结合安全性、易用性，
+您觉得这些设计哪些地方需要进一步改进吗？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;统一过程宏和声明宏的语法，使其能容易学习和使用，目前rust工作组也的确在打算改进声明宏的语法&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;16、对于初学者学习 Rust 您有什么好的方法建议吗？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;基础知识过一遍就好了，快点多上手写小程序练习，就像前面说的有些概念要在使用中发现和自己平时的编程习惯不符合了，才会理解更深刻，使用过程中再多次回顾基础知识能理解更深入；有问题多问大模型，然后大模型给出的rust代码质量也挺高的，可以参考学习，这比起到复杂项目中去学习别人的编码实践容易很多&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;17、在社区平台交流时，您遇到过什么问题吗？您觉得哪些地方急需进一步的改进？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;无；希望吹rust的人理性一点吧，有些人太狂热有些偏执，在社区发言激进，让不太了解rust的人比较反感，已经有反对rust，拒绝学习和使用rust的声音和浪潮了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;18、想要更多的人知道、并使用 Rust 作为项目的开发语言，您觉得 Rust 目前在哪些方面需
+要做出改变？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;上面说的也算一点；然后就是需要有一个杀手级应用和领域吧，现在rust属于是在多个领域比如操作系统，区块链，ai infra，wasm等方面满满渗透（正如其名，锈蚀），但是不是带着一个基本盘来的，比如c/c++的系统开发，c#的游戏脚本，python的数据分析和ai，java的后端以及go的云原生&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;19、 从技术或者理论的角度来看， 您觉得目前 Rust 的研究热点或者争议主要是哪些方面的？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;编译器并行化加速编译速度；有个争议点就是Rust写的真的就安全吗？要慎用unsafe以及对unsafe代码做更多的检查（miri就是一种）；对于UB的定义还在探索和尝试过程中；&lt;/p&gt;
+&lt;/blockquote&gt;</description></item><item><title>Hello World</title><link>https://rollinggulf.github.io/p/hello-world/</link><pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate><guid>https://rollinggulf.github.io/p/hello-world/</guid><description>&lt;img src="https://rollinggulf.github.io/p/hello-world/cover.jpg" alt="Featured image of post Hello World" /&gt;&lt;p&gt;Welcome to Hugo theme Stack. This is your first post. Edit or delete it, then start writing!&lt;/p&gt;
+&lt;p&gt;For more information about this theme, check the documentation: &lt;a class="link" href="https://stack.jimmycai.com/" target="_blank" rel="noopener"
+&gt;https://stack.jimmycai.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Want a site like this? Check out &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack-starter" target="_blank" rel="noopener"
+&gt;hugo-theme-stack-stater&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Photo by &lt;a class="link" href="https://unsplash.com/@pawel_czerwinski" target="_blank" rel="noopener"
+&gt;Pawel Czerwinski&lt;/a&gt; on &lt;a class="link" href="https://unsplash.com/" target="_blank" rel="noopener"
+&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description></item><item><title>My New Blog</title><link>https://rollinggulf.github.io/p/my-new-blog/</link><pubDate>Mon, 22 Dec 2025 09:23:48 +0000</pubDate><guid>https://rollinggulf.github.io/p/my-new-blog/</guid><description>&lt;p&gt;hugo new test: generate prefix meta data automatically.&lt;/p&gt;</description></item><item><title>Markdown Syntax Guide</title><link>https://rollinggulf.github.io/p/markdown-syntax-guide/</link><pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate><guid>https://rollinggulf.github.io/p/markdown-syntax-guide/</guid><description>&lt;p&gt;This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p&gt;
+&lt;h2 id="headings"&gt;Headings
+&lt;/h2&gt;&lt;p&gt;The following HTML &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt;—&lt;code&gt;&amp;lt;h6&amp;gt;&lt;/code&gt; elements represent six levels of section headings. &lt;code&gt;&amp;lt;h1&amp;gt;&lt;/code&gt; is the highest section level while &lt;code&gt;&amp;lt;h6&amp;gt;&lt;/code&gt; is the lowest.&lt;/p&gt;
+&lt;h1 id="h1"&gt;H1
+&lt;/h1&gt;&lt;h2 id="h2"&gt;H2
+&lt;/h2&gt;&lt;h3 id="h3"&gt;H3
+&lt;/h3&gt;&lt;h4 id="h4"&gt;H4
+&lt;/h4&gt;&lt;h5 id="h5"&gt;H5
+&lt;/h5&gt;&lt;h6 id="h6"&gt;H6
+&lt;/h6&gt;&lt;h2 id="paragraph"&gt;Paragraph
+&lt;/h2&gt;&lt;p&gt;Xerum, quo qui aut unt expliquam qui dolut labo. Aque venitatiusda cum, voluptionse latur sitiae dolessi aut parist aut dollo enim qui voluptate ma dolestendit peritin re plis aut quas inctum laceat est volestemque commosa as cus endigna tectur, offic to cor sequas etum rerum idem sintibus eiur? Quianimin porecus evelectur, cum que nis nust voloribus ratem aut omnimi, sitatur? Quiatem. Nam, omnis sum am facea corem alique molestrunt et eos evelece arcillit ut aut eos eos nus, sin conecerem erum fuga. Ri oditatquam, ad quibus unda veliamenimin cusam et facea ipsamus es exerum sitate dolores editium rerore eost, temped molorro ratiae volorro te reribus dolorer sperchicium faceata tiustia prat.&lt;/p&gt;
+&lt;p&gt;Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sapicia is sinveli squiatum, core et que aut hariosam ex eat.&lt;/p&gt;
+&lt;h2 id="blockquotes"&gt;Blockquotes
+&lt;/h2&gt;&lt;p&gt;The blockquote element represents content that is quoted from another source, optionally with a citation which must be within a &lt;code&gt;footer&lt;/code&gt; or &lt;code&gt;cite&lt;/code&gt; element, and optionally with in-line changes such as annotations and abbreviations.&lt;/p&gt;
+&lt;h3 id="blockquote-without-attribution"&gt;Blockquote without attribution
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Tiam, ad mint andaepu dandae nostion secatur sequo quae.
+&lt;strong&gt;Note&lt;/strong&gt; that you can use &lt;em&gt;Markdown syntax&lt;/em&gt; within a blockquote.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="blockquote-with-attribution"&gt;Blockquote with attribution
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Don&amp;rsquo;t communicate by sharing memory, share memory by communicating.&lt;br&gt;
+— &lt;cite&gt;Rob Pike&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref"&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/cite&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="tables"&gt;Tables
+&lt;/h2&gt;&lt;p&gt;Tables aren&amp;rsquo;t part of the core Markdown spec, but Hugo supports supports them out-of-the-box.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Name&lt;/th&gt;
+&lt;th&gt;Age&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Bob&lt;/td&gt;
+&lt;td&gt;27&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Alice&lt;/td&gt;
+&lt;td&gt;23&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="inline-markdown-within-tables"&gt;Inline Markdown within tables
+&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Italics&lt;/th&gt;
+&lt;th&gt;Bold&lt;/th&gt;
+&lt;th&gt;Code&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;em&gt;italics&lt;/em&gt;&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;bold&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;code&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;A&lt;/th&gt;
+&lt;th&gt;B&lt;/th&gt;
+&lt;th&gt;C&lt;/th&gt;
+&lt;th&gt;D&lt;/th&gt;
+&lt;th&gt;E&lt;/th&gt;
+&lt;th&gt;F&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/td&gt;
+&lt;td&gt;Phasellus ultricies, sapien non euismod aliquam, dui ligula tincidunt odio, at accumsan nulla sapien eget ex.&lt;/td&gt;
+&lt;td&gt;Proin eleifend dictum ipsum, non euismod ipsum pulvinar et. Vivamus sollicitudin, quam in pulvinar aliquam, metus elit pretium purus&lt;/td&gt;
+&lt;td&gt;Proin sit amet velit nec enim imperdiet vehicula.&lt;/td&gt;
+&lt;td&gt;Ut bibendum vestibulum quam, eu egestas turpis gravida nec&lt;/td&gt;
+&lt;td&gt;Sed scelerisque nec turpis vel viverra. Vivamus vitae pretium sapien&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="code-blocks"&gt;Code Blocks
+&lt;/h2&gt;&lt;h3 id="code-block-with-backticks"&gt;Code block with backticks
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-html" data-lang="html"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt; &lt;span class="na"&gt;lang&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;en&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;meta&lt;/span&gt; &lt;span class="na"&gt;charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;utf-8&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Example HTML5 Document&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;head&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;Test&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;body&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="code-block-indented-with-four-spaces"&gt;Code block indented with four spaces
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;&amp;lt;!doctype html&amp;gt;
+&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
+&amp;lt;title&amp;gt;Example HTML5 Document&amp;lt;/title&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+&amp;lt;p&amp;gt;Test&amp;lt;/p&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="diff-code-block"&gt;Diff code block
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-diff" data-lang="diff"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;[dependencies.bevy]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git = &amp;#34;https://github.com/bevyengine/bevy&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;rev = &amp;#34;11f52b8c72fc3a568e8bb4a4cd1f3eb025ac2e13&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gd"&gt;- features = [&amp;#34;dynamic&amp;#34;]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gi"&gt;+ features = [&amp;#34;jpeg&amp;#34;, &amp;#34;dynamic&amp;#34;]
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="one-line-code-block"&gt;One line code block
+&lt;/h3&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-html" data-lang="html"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;A paragraph&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;p&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="list-types"&gt;List Types
+&lt;/h2&gt;&lt;h3 id="ordered-list"&gt;Ordered List
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;First item&lt;/li&gt;
+&lt;li&gt;Second item&lt;/li&gt;
+&lt;li&gt;Third item&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="unordered-list"&gt;Unordered List
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;List item&lt;/li&gt;
+&lt;li&gt;Another item&lt;/li&gt;
+&lt;li&gt;And another item&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="nested-list"&gt;Nested list
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Fruit
+&lt;ul&gt;
+&lt;li&gt;Apple&lt;/li&gt;
+&lt;li&gt;Orange&lt;/li&gt;
+&lt;li&gt;Banana&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Dairy
+&lt;ul&gt;
+&lt;li&gt;Milk&lt;/li&gt;
+&lt;li&gt;Cheese&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="other-elements--abbr-sub-sup-kbd-mark"&gt;Other Elements — abbr, sub, sup, kbd, mark
+&lt;/h2&gt;&lt;p&gt;&lt;abbr title="Graphics Interchange Format"&gt;GIF&lt;/abbr&gt; is a bitmap image format.&lt;/p&gt;
+&lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O&lt;/p&gt;
+&lt;p&gt;X&lt;sup&gt;n&lt;/sup&gt; + Y&lt;sup&gt;n&lt;/sup&gt; = Z&lt;sup&gt;n&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;Press &lt;kbd&gt;CTRL&lt;/kbd&gt; + &lt;kbd&gt;ALT&lt;/kbd&gt; + &lt;kbd&gt;Delete&lt;/kbd&gt; to end the session.&lt;/p&gt;
+&lt;p&gt;Most &lt;mark&gt;salamanders&lt;/mark&gt; are nocturnal, and hunt for insects, worms, and other small creatures.&lt;/p&gt;
+&lt;div class="footnotes" role="doc-endnotes"&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;The above quote is excerpted from Rob Pike&amp;rsquo;s &lt;a class="link" href="https://www.youtube.com/watch?v=PAAkCSZUG1c" target="_blank" rel="noopener"
+&gt;talk&lt;/a&gt; during Gopherfest, November 18, 2015.&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink"&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</description></item><item><title>Image gallery</title><link>https://rollinggulf.github.io/p/image-gallery/</link><pubDate>Sat, 26 Aug 2023 00:00:00 +0000</pubDate><guid>https://rollinggulf.github.io/p/image-gallery/</guid><description>&lt;img src="https://rollinggulf.github.io/p/image-gallery/2.jpg" alt="Featured image of post Image gallery" /&gt;&lt;p&gt;Hugo theme Stack supports the creation of interactive image galleries using Markdown. It&amp;rsquo;s powered by &lt;a class="link" href="https://photoswipe.com/" target="_blank" rel="noopener"
+&gt;PhotoSwipe&lt;/a&gt; and its syntax was inspired by &lt;a class="link" href="https://typlog.com/" target="_blank" rel="noopener"
+&gt;Typlog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;To use this feature, the image must be in the same directory as the Markdown file, as it uses Hugo&amp;rsquo;s page bundle feature to read the dimensions of the image. &lt;strong&gt;External images are not supported.&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="syntax"&gt;Syntax
+&lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-markdown" data-lang="markdown"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;![&lt;span class="nt"&gt;Image 1&lt;/span&gt;](&lt;span class="na"&gt;1.jpg&lt;/span&gt;) ![&lt;span class="nt"&gt;Image 2&lt;/span&gt;](&lt;span class="na"&gt;2.jpg&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="result"&gt;Result
+&lt;/h2&gt;&lt;p&gt;&lt;img src="https://rollinggulf.github.io/p/image-gallery/1.jpg"
+width="2000"
+height="1400"
+srcset="https://rollinggulf.github.io/p/image-gallery/1_hu_32a169d2afcbcc04.jpg 480w, https://rollinggulf.github.io/p/image-gallery/1_hu_3a73c825de3f86b8.jpg 1024w"
+loading="lazy"
+alt="Image 1"
+class="gallery-image"
+data-flex-grow="142"
+data-flex-basis="342px"
+&gt; &lt;img src="https://rollinggulf.github.io/p/image-gallery/2.jpg"
+width="1500"
+height="2250"
+srcset="https://rollinggulf.github.io/p/image-gallery/2_hu_2a56812cdca2c35e.jpg 480w, https://rollinggulf.github.io/p/image-gallery/2_hu_70fe5bdaa5eb1f20.jpg 1024w"
+loading="lazy"
+alt="Image 2"
+class="gallery-image"
+data-flex-grow="66"
+data-flex-basis="160px"
+&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Photo by &lt;a class="link" href="https://unsplash.com/@mymind" target="_blank" rel="noopener"
+&gt;mymind&lt;/a&gt; and &lt;a class="link" href="https://unsplash.com/@lukechesser" target="_blank" rel="noopener"
+&gt;Luke Chesser&lt;/a&gt; on &lt;a class="link" href="https://unsplash.com/" target="_blank" rel="noopener"
+&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description></item><item><title>Shortcodes</title><link>https://rollinggulf.github.io/p/shortcodes/</link><pubDate>Fri, 25 Aug 2023 00:00:00 +0000</pubDate><guid>https://rollinggulf.github.io/p/shortcodes/</guid><description>&lt;img src="https://rollinggulf.github.io/p/shortcodes/cover.jpg" alt="Featured image of post Shortcodes" /&gt;&lt;p&gt;For more details, check out the &lt;a class="link" href="https://stack.jimmycai.com/writing/shortcodes" target="_blank" rel="noopener"
+&gt;documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id="bilibili-video"&gt;Bilibili video
+&lt;/h2&gt;
+&lt;div class="video-wrapper"&gt;
+&lt;iframe src="https://player.bilibili.com/player.html?as_wide=1&amp;amp;high_quality=1&amp;amp;page=1&amp;bvid=BV1d4411N7zD"
+scrolling="no"
+frameborder="no"
+framespacing="0"
+allowfullscreen="true"
+&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h2 id="tencent-video"&gt;Tencent video
+&lt;/h2&gt;
+&lt;div class="video-wrapper"&gt;
+&lt;iframe src="https://v.qq.com/txp/iframe/player.html?vid=g0014r3khdw&amp;auto=0"
+scrolling="no"
+frameborder="no"
+framespacing="0"
+allowfullscreen="true"
+&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h2 id="youtube-video"&gt;YouTube video
+&lt;/h2&gt;&lt;div class="video-wrapper"&gt;
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/0qwALOOvUik"
+allowfullscreen
+title="YouTube Video"
+&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;h2 id="generic-video-file"&gt;Generic video file
+&lt;/h2&gt;&lt;div class="video-wrapper"&gt;
+&lt;video
+controls
+src="https://www.w3schools.com/tags/movie.mp4"
+&gt;
+&lt;p&gt;
+Your browser doesn't support HTML5 video. Here is a
+&lt;a href="https://www.w3schools.com/tags/movie.mp4"&gt;link to the video&lt;/a&gt; instead.
+&lt;/p&gt;
+&lt;/video&gt;
+&lt;/div&gt;
+&lt;h2 id="gist"&gt;Gist
+&lt;/h2&gt;&lt;script src="https://gist.github.com/CaiJimmy/e2751a943de10b2a5b3a8a6c2120cb86.js"&gt;&lt;/script&gt;
+&lt;h2 id="gitlab"&gt;GitLab
+&lt;/h2&gt;&lt;script
+type="application/javascript"
+src="https://gitlab.com/-/snippets/2589724.js"
+&gt;&lt;/script&gt;
+&lt;h2 id="quote"&gt;Quote
+&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;&lt;span class="cite"&gt;&lt;span&gt;― &lt;/span&gt;&lt;span&gt;A famous person, &lt;/span&gt;&lt;a href="https://en.wikipedia.org/wiki/Book"&gt;&lt;cite&gt;The book they wrote&lt;/cite&gt;&lt;/a&gt;&lt;/span&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Photo by &lt;a class="link" href="https://unsplash.com/@codioful" target="_blank" rel="noopener"
+&gt;Codioful&lt;/a&gt; on &lt;a class="link" href="https://unsplash.com/photos/WDSN62Qdxuk" target="_blank" rel="noopener"
+&gt;Unsplash&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description></item><item><title>Math Typesetting</title><link>https://rollinggulf.github.io/p/math-typesetting/</link><pubDate>Thu, 24 Aug 2023 00:00:00 +0000</pubDate><guid>https://rollinggulf.github.io/p/math-typesetting/</guid><description>&lt;p&gt;Stack has built-in support for math typesetting using &lt;a class="link" href="https://katex.org/" target="_blank" rel="noopener"
+&gt;KaTeX&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;It&amp;rsquo;s not enabled by default side-wide,&lt;/strong&gt; but you can enable it for individual posts by adding &lt;code&gt;math: true&lt;/code&gt; to the front matter. Or you can enable it side-wide by adding &lt;code&gt;math = true&lt;/code&gt; to the &lt;code&gt;params.article&lt;/code&gt; section in &lt;code&gt;config.toml&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id="inline-math"&gt;Inline math
+&lt;/h2&gt;&lt;p&gt;This is an inline mathematical expression: $\varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887…$&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-markdown" data-lang="markdown"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$\varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887…$
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="block-math"&gt;Block math
+&lt;/h2&gt;$$
+\varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } }
+$$&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-markdown" data-lang="markdown"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$$
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } }
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$$
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;$$
+f(x) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi
+$$&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-markdown" data-lang="markdown"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$$
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; f(x) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;$$
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item></channel></rss>
